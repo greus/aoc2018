@@ -43,7 +43,7 @@ let findSimilar (chars : list<char>, all) =
             if other.[i] = chars.[i] then si <- si+1
 
         if si = ((List.length chars)-1) then
-            printfn "Found: %A" (other |> List.toArray |> System.String)
+            printfn "Found: %A %A" (other |> List.toArray |> System.String) (chars |> List.toArray |> System.String)
             for i in 0..(List.length other)-1 do
                 if other.[i] = chars.[i] then
                     printf "%c" other.[i]
