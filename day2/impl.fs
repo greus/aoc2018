@@ -55,7 +55,7 @@ let p2 () =
     all
     |> Seq.iter (fun chars -> findSimilar(chars, all))
 
-let rec similar (all:list<list<char>>) =
+let rec similar all =
     match all with
     | [] -> printfn "Done"
     | head::tail -> findSimilar(head,tail);similar tail
