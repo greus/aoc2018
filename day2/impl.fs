@@ -54,3 +54,14 @@ let p2 () =
     let all = readLines "input" |> Seq.toList |> Seq.map Seq.toList
     all
     |> Seq.iter (fun chars -> findSimilar(chars, all))
+
+let rec similar (all:list<list<char>>) =
+    match all with
+    | [] -> printfn "Done"
+    | head::tail -> findSimilar(head,tail);similar tail
+
+let p22 () =
+    readLines "input"
+    |> Seq.toList
+    |> List.map Seq.toList
+    |> similar
