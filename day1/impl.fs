@@ -2,12 +2,7 @@ module day1
 
 let readLines filePath = System.IO.File.ReadLines(filePath)
 
-let changeFreq (initial, change : string) =
-    let modifer = change.[0]
-    let value = change.[1..change.Length-1] |> int64
-    match modifer with
-    | '+' -> initial + value
-    | _ -> initial - value
+let changeFreq (initial, change : string) = initial + (change |> int64)
 
 let run initial =
     readLines "input1.txt"
