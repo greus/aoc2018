@@ -74,6 +74,17 @@ let findSleepiestMinute (g, _, e) =
     |> List.head
     |> result g
 
+let result2 g l =
+    match l with
+    | [] -> (g, 0, 0)
+    | (m, x)::_ -> (g, m, List.length x)
+
+let findSleepiestMinute2 (g, _, e) =
+    e
+    |> List.groupBy (fun x -> x)
+    |> List.sortByDescending (fun (_, b) -> List.length b)
+    |> result2 g
+
 let test () =
     ["[1518-11-01 00:00] Guard #10 begins shift";
     "[1518-11-01 00:05] falls asleep";
@@ -104,6 +115,37 @@ let test () =
     |> findSleepiestMinute
     |> printfn "%A"
 
+let test2 () =
+    ["[1518-11-01 00:00] Guard #10 begins shift";
+    "[1518-11-01 00:05] falls asleep";
+    "[1518-11-01 00:25] wakes up";
+    "[1518-11-01 00:30] falls asleep";
+    "[1518-11-01 00:55] wakes up";
+    "[1518-11-01 23:58] Guard #99 begins shift";
+    "[1518-11-02 00:40] falls asleep";
+    "[1518-11-02 00:50] wakes up";
+    "[1518-11-03 00:05] Guard #10 begins shift";
+    "[1518-11-03 00:24] falls asleep";
+    "[1518-11-03 00:29] wakes up";
+    "[1518-11-04 00:02] Guard #99 begins shift";
+    "[1518-11-04 00:36] falls asleep";
+    "[1518-11-04 00:46] wakes up";
+    "[1518-11-05 00:03] Guard #99 begins shift";
+    "[1518-11-05 00:45] falls asleep";
+    "[1518-11-05 00:55] wakes up"]
+    |> Seq.map mapEvents
+    |> Seq.sortBy (fun e -> e.GetTime)
+    |> Seq.toList
+    |> groupEvents
+    |> List.groupBy (fun (g, _, _) -> g)
+    |> List.map sum
+    |> List.map (fun (g, e) -> (g, List.length e, e))
+    |> List.map findSleepiestMinute2
+    // |> List.sortByDescending (fun (g, l) -> l)
+    // |> List.head
+    // |> printfn "%A"
+
+
 let p1 () =
     readLines "input"
     |> Seq.map mapEvents
@@ -117,3 +159,20 @@ let p1 () =
     |> List.head
     |> findSleepiestMinute
     |> printfn "%A"
+
+let p2answer (g, m, _) =
+    g * m
+
+let p2 () =
+    readLines "input"
+    |> Seq.map mapEvents
+    |> Seq.sortBy (fun e -> e.GetTime)
+    |> Seq.toList
+    |> groupEvents
+    |> List.groupBy (fun (g, _, _) -> g)
+    |> List.map sum
+    |> List.map (fun (g, e) -> (g, List.length e, e))
+    |> List.map findSleepiestMinute2
+    |> List.sortByDescending (fun (g, m, l) -> l)
+    |> List.head
+    |> p2answer
