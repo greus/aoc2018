@@ -13,13 +13,13 @@ Start F# interactive:
 fsi.exe
 
 ```
-"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\FSharp\fsi.exe"
+PS> & 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\FSharp\fsi.exe'
 ```
 
 fsharpi (mono)
 
 ```
-fsharpi
+$ fsharpi
 ```
 
 Load file
