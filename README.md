@@ -2,19 +2,32 @@
 
 ## F#
 
-Run code in F# interactive:
-
 ```
-cd day1
-fsharpi
-#load "impl.fs";;
-day1.run 0L;;
+cd day{i}
 ```
 
+Start F# interactive:
+
+fsi.exe
+
 ```
-cd day2
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\FSharp\fsi.exe"
+```
+
+fsharpi (mono)
+
+```
 fsharpi
+```
+
+Load file
+
+```
 #load "impl.fs";;
-day2.p1 ();;
-day2.p22 ();;
+```
+
+Example - run day 5 part 1
+
+```
+day5.p1 ();;
 ```

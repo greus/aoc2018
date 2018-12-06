@@ -8,8 +8,6 @@ let (|Regex|_|) pattern input =
     if m.Success then Some(List.tail [ for g in m.Groups -> g.Value ])
     else None
 
-// "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\FSharp\fsi.exe"
-
 let readLines filePath = System.IO.File.ReadLines(filePath)
 
 type BeginsShift = { Time : DateTime; GuardId : int }
