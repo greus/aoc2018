@@ -52,7 +52,6 @@ let foo(acc:List<int * DateTime * List<int>>, e) =
     | BeginsShift { Time=t; GuardId=g } -> ((g, t, []) :: acc)
     | FallsAsleep { Time=t } -> setAsleep acc t
     | WakesUp { Time=t } -> countAsleep(acc, t)
-    | _ -> acc
 
 let groupEvents events =
     events
