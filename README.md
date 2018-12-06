@@ -1,5 +1,7 @@
 # Advent of Code 2018
 
+*Disclaimer: I am not a F# developer*
+
 ## F#
 
 ```
