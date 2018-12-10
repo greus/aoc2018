@@ -1,4 +1,4 @@
-module day5
+module Day5
 
 open System
 
@@ -12,7 +12,7 @@ let stripchars chars str =
     str chars
 
 let didReact c1 c2 =
-    Char.ToUpper c1 = Char.ToUpper c2 && not(c1 = c2)
+    Char.ToUpper c1 = Char.ToUpper c2 && c1 <> c2
 
 let rec anyReaction chars =
     match chars with
@@ -20,7 +20,7 @@ let rec anyReaction chars =
     | char::rest ->
         match rest with
         | [] -> (false, [])
-        | next::rest2 -> if didReact char next then (true, [char;next]) else anyReaction rest
+        | next::_ -> if didReact char next then (true, [char;next]) else anyReaction rest
 
 let rec react chars =
     match anyReaction chars with
