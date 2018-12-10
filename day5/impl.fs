@@ -46,3 +46,11 @@ let p1 () =
     |> Seq.toList
     |> react
     |> List.length
+
+let p2 () =
+    let str = readText "input" |> stripchars ['\n']
+    let az = ['a';'b';'c';'d';'e';'f';'g';'h';'i';'j';'k';'l';'m';'n';'o';'p';'q';'r';'s';'t';'u';'v';'w';'x';'y']
+
+    az
+    |> List.map (fun letter -> (letter, str |> stripchars [letter] |> Seq.toList |> react |> List.length))
+    |> List.minBy (fun (_, length) -> length)
